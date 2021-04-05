@@ -2,14 +2,15 @@ package snakegame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import java.awt.Graphics;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.util.Random;
-import java.util.Timer;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -41,7 +42,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	public void startGame() {
 		newApple();
 		running = true;
-		timer = new Timer(DELAY, this);
+		timer = new Timer(DELAY,this);
 		timer.start();
 	}
 
@@ -51,6 +52,10 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 
 	public void draw(Graphics g) {
+		for(int i = 0; i < (SCREEN_HEIGHT / UNIT_SIZE); i++) {
+			g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+			g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
+		}
 	}
 
 	public void newApple() {
